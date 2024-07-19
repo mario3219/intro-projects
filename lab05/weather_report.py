@@ -1,5 +1,6 @@
 from pathlib import Path
 import file_reader 
+import weather_functions
 
 # The file name is actually 'temperatur_data.csv' but added some extra path-stuff here  
 # to make sure that it will be found by everyone
@@ -10,13 +11,16 @@ temp_list = file_reader.read_from_file(file_path, 2)
 avg_temp = sum(temp_list)/len(temp_list)
 print(avg_temp)
 
-def calculate_avg_temp(list):
-    sum = 0
-    length = 0
-    for x in list:
-        sum += x
-        length += 1
-    return sum/length
-
-avg_temp = calculate_avg_temp(temp_list)
+avg_temp = weather_functions.calculate_avg_temp(temp_list)
 print(avg_temp)
+
+temp_list = file_reader.read_from_file(file_path, 0)
+spring_idx = weather_functions.when_is_spring(temp_list)
+print(spring_idx)
+
+user_input = input('Vad vill du göra? Tryck 1 för medeltemperatur och 2 för vårens ankomst' + '\n')
+if int(user_input) == 1:
+    user_input = input('Vilken månad vill du beräkna medeltemperaturen för? Ange månadsnummer' + '\n')
+    temp_list = file_reader.read_from_file(file_path, user_input)
+    avg_temp = weather_functions.calculate_avg_temp(temp_list)
+    print('Medeltemperaturen var ' + str(avg_temp) + ' grader i månad ' + str(user_input))

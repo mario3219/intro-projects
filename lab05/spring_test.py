@@ -1,6 +1,6 @@
 import file_reader 
 import unittest
-#import weather_functions
+import weather_functions
 from pathlib import Path
 
 class TestSum(unittest.TestCase):
