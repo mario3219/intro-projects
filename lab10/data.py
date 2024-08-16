@@ -21,7 +21,7 @@ class Bank:
         return found
 
     def create_account(self, customer_id):
-        pass
+        self.Accounts.append(Account)
 
     def get_account(self, account_nbr):
         pass
